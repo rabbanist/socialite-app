@@ -53,4 +53,10 @@ return [
         'redirect' => env('GITHUB_REDIRECTS'),
     ],
 
+    'linkedin-openid' => [
+        'client_id' => env('LINKEDIN_CLIENT_ID'),
+        'client_secret' => env('LINKEDIN_CLIENT_SECRET'),
+        'redirect' => env('LINKEDIN_REDIRECTS'),
+    ],
+
 ];

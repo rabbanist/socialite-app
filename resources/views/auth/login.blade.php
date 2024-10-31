@@ -46,7 +46,7 @@
         {{-- Socialite Login --}}
         <div class="flex items-center mt-4">
             {{-- Google login --}}
-            <a tittle="Login with Google" href="{{ route('auth.redirection', 'google') }}" class="inline-block px-3 py-2 rounded-lg shadow mr-3">
+            <a title="Login with Google" href="{{ route('auth.redirection', 'google') }}" class="inline-block px-3 py-2 rounded-lg shadow mr-3">
                 <img
                     src="{{ asset('assets/icons/google.png') }}"
                     width="30px"
@@ -62,9 +62,17 @@
             </a>
 
             {{-- Login With Github --}}
-             <a title="Login with Facebook" href="{{ route('auth.redirection', 'github') }}" class="inline-block px-3 py-2 rounded-lg shadow">
+             <a title="Login with Github" href="{{ route('auth.redirection', 'github') }}" class="inline-block px-3 py-2 rounded-lg shadow">
                 <img
                     src="{{ asset('assets/icons/github.png') }}"
+                    width="30px"
+                />
+            </a>
+
+            {{-- Login With Linkdein --}}
+             <a title="Login with Linkedin" href="{{ route('auth.redirection', 'linkedin-openid') }}" class="inline-block px-3 py-2 rounded-lg shadow">
+                <img
+                    src="{{ asset('assets/icons/linkedin.webp') }}"
                     width="30px"
                 />
             </a>
