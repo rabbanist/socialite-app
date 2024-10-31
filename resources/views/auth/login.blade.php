@@ -61,6 +61,14 @@
                 />
             </a>
 
+            {{-- Login With Github --}}
+             <a title="Login with Facebook" href="{{ route('auth.redirection', 'github') }}" class="inline-block px-3 py-2 rounded-lg shadow">
+                <img
+                    src="{{ asset('assets/icons/github.png') }}"
+                    width="30px"
+                />
+            </a>
+
 
         </div>
     </form>
