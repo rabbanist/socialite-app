@@ -9,8 +9,9 @@ Route::get('/', function () {
 });
 
 Route::controller(SocialiteController::class)->group(function() {
-    Route::get('/auth/google','googleLogin')->name('auth.google');
-    Route::get('auth/google-callback', 'googleAuthentication')->name('auth.google-callback');
+    Route::get('auth/redirection/{provider}', 'authProviderRedirect')->name('auth.redirection');
+
+    Route::get('auth/{provider}/callback', 'socialAuthentication')->name('auth.callback');
 });
 
 

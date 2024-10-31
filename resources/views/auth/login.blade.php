@@ -16,10 +16,7 @@
         <div class="mt-4">
             <x-input-label for="password" :value="__('Password')" />
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
+            <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
 
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
@@ -34,17 +31,37 @@
 
         <div class="flex items-center justify-between mt-4">
 
-            <a href="{{ route('auth.google') }}" class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Google Login</a>
 
             @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
+            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
+                {{ __('Forgot your password?') }}
+            </a>
             @endif
 
             <x-primary-button class="ms-3">
                 {{ __('Log in') }}
             </x-primary-button>
+        </div>
+
+        {{-- Socialite Login --}}
+        <div class="flex items-center mt-4">
+            {{-- Google login --}}
+            <a tittle="Login with Google" href="{{ route('auth.redirection', 'google') }}" class="inline-block px-3 py-2 rounded-lg shadow mr-3">
+                <img
+                    src="{{ asset('assets/icons/google.png') }}"
+                    width="30px"
+                />
+            </a>
+
+            {{-- Login With Facebook --}}
+             <a title="Login with Facebook" href="{{ route('auth.redirection', 'facebook') }}" class="inline-block px-3 py-2 rounded-lg shadow">
+                <img
+                    src="{{ asset('assets/icons/facebook.jpeg') }}"
+                    width="30px"
+                />
+            </a>
+
+
         </div>
     </form>
 </x-guest-layout>

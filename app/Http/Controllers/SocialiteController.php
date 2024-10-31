@@ -11,32 +11,45 @@ use Laravel\Socialite\Facades\Socialite;
 
 class SocialiteController extends Controller
 {
-    public function googleLogin()
+    // This function given prover redirection 
+    public function authProviderRedirect($provider)
     {
-        return Socialite::driver('google')->redirect();
+        if($provider){
+            return Socialite::driver($provider)->redirect();
+        }
+        abort(404);
     }
 
     // Google authentication
-    public function googleAuthentication()
+    public function socialAuthentication($provider)
     {
         try {
-            $googleUser = Socialite::driver('google')->user();
-            $user = User::where('google_id', $googleUser->id)->first();
-            if ($user) {
-                Auth::login($user);
-                return redirect()->route('dashboard');
-            } else {
-                $userData =  User::create([
-                    'name' => $googleUser->name,
-                    'email' => $googleUser->email,
-                    'password' => Hash::make("Password"),
-                    'google_id' => $googleUser->id
-                ]);
-                if ($userData) {
-                    Auth::login($userData);
-                    return redirect()->route('dashboard');
+            if ($provider) {
+                $socialUser = Socialite::driver($provider)->user();
+
+                $user = User::where('auth_provider_id', $socialUser->id)->first();
+
+                if ($user) {
+                    Auth::login($user);
+
+                } else {
+                    $userData = User::create([
+                        'name' => $socialUser->name,
+                        'email' => $socialUser->email,
+                        'password' => Hash::make('Password@1234'),
+                        'auth_provider_id' => $socialUser->id,
+                        'auth_provider' => $provider,
+                    ]);
+
+                    if ($userData) {
+                        Auth::login($userData);
+                    }
                 }
+
+                return redirect()->route('dashboard');
             }
+            abort(404);
+
         } catch (Exception $e) {
             dd($e);
         }
